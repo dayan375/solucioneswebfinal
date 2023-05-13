@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="IMG/favicon.ico">
+        <title>Minimarket Claudia</title>
+        <link rel="stylesheet" th:href="@{/CSS/bootstrap.min.css}"/>
+        <script th:src="@{/JS/popper.min.js}"></script>
+        <script th:src="@{/JS/bootstrap.min.js}"></script>
+        <link rel="stylesheet" th:href="@{/CSS/pwestilo.css}">
+        <link rel="stylesheet" th:href="@{/CSS/all.css}">
+    </head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Catalogo</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">Productos</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#!">Más vendidos</a></li>
+                            <li><a class="dropdown-item" href="#!">Ofertas</a></li>
+                            <li><a class="dropdown-item" th:href="@{limpieza}">Limpieza</a></li>
+                            <li><a class="dropdown-item" th:href="@{bebidas}">Bebidas</a></li>
+                            <li><a class="dropdown-item" th:href="@{lacteos}">Lacteos</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="boton1">
+                    <button type="button" class="btn btn-outline-dark">carrito</button>
+                </div>
+                <button type="button" class="btn btn-outline-danger">
+                    <a th:href="@{login}">login</a>
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+     <!-- Header-->
+     <header class="bg-danger py-5 ">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder"> MINIMARKET CLAUDIA</h1>
+                <p class="lead fw-normal text-white-50 mb-0">calle jose olaya - SM</p>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="row container">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="col mb-5">
+            <div class="card h-100">
+                <img src="IMG/coca.jpg" class="cocacola">
+                <div class="card-body p-4" >
+                    <div class="text-center">
+                        <h5> Coca Cola</h5> 
+                    
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-dark">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Agregar al cesto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-5">
+            <div class="card h-100">
+                <img src="IMG/inkakola.jpg" class="sanmateo">
+                <div class="card-body p-4" >
+                    <div class="text-center">
+                        <h5> Inka Cola  </h5> 
+                    
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-dark">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Agregar al cesto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-5">
+            <div class="card h-100">
+                <img src="IMG/sprite.jpg" class="cartavio">
+                <div class="card-body p-4" >
+                    <div class="text-center">
+                        <h5> Sprite </h5> 
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-dark">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Agregar al cesto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-5">
+            <div class="card h-100">
+                <img src="IMG/fanta.jpg" class="inkachips">
+                <div class="card-body p-4" >
+                    <div class="text-center">
+                        <h5> Fanta </h5> 
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-dark">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Agregar al cesto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-5">
+            <div class="card h-100">
+                <img src="IMG/aguacielo.jpg" class="galleta">
+                <div class="card-body p-4" >
+                    <div class="text-center">
+                        <h5> Agua Cielo </h5> 
+                    
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-dark">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Agregar al cesto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-5 ">
+            <div class="card h-100">
+                <img src="IMG/sanmateo.jpg" class="doritos">
+                <div class="card-body p-4" >
+                    <div class="text-center">
+                        <h5> San Mateo </h5> 
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-dark">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Agregar al cesto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-5 ">
+            <div class="card h-100">
+                <img src="IMG/gatorade.jpg" class="lucky">
+                <div class="card-body p-4" >
+                    <div class="text-center">
+                        <h5> Gatorade </h5> 
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-outline-dark">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Agregar al cesto 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="row ultimo">
+        <div class="col-md-12 col-lg-12">
+            <p class="text-center text-white" > Copyright &copy; Your Website 2023 </p>
+        </div>
+
+    </div>   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+</body>    
