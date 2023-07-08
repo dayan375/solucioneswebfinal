@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head th:replace="layouts/plantilla :: cabecera"  >
+        
+    </head>
+    <body class="sb-nav-fixed">
+        <nav th:replace="layouts/plantilla :: barra" >
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav" th:replace="layouts/plantilla :: menu" >  
+            </div >
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <div class="alert alert-warning alert-dismissible fade show" th:if="${mensaje != null}" role="alert">
+
+                            <span th:text="${mensaje}"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                        </div>
+
+                        <form th:action="@{/usuario/form}" th:object="${usuario}" method="post">
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    Registrar Usuario
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label> Categoria </label>
+                                            <select class="form-select" th:field="*{perfil.id}">
+                                                <option value="">Seleccione una opcion: </option>
+                                                <option th:each="item: ${listaPerfiles}" th:value="${item.id}" th:text="${item.dni}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label> Nombre del Usuario </label>
+                                            <input th:field="*{nombre}" type="text" placeholder="ingrese el nombre" class="form-control">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label> Apellido del Usuario </label>
+                                            <input th:field="*{apellido}" type="text" placeholder="ingrese el apellido" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn btn-success" >
+                                            <i class="fa-solid fa-floppy-disk"></i>
+                                            Guardar Usuario
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="card mt-5 text-center">
+
+                            <div class="card-header">
+
+                                Usuarios Registrados
+
+                            </div>
+
+                            <div class="card-body">
+
+                                <table class="table table-bordered table-hover">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>DNI</th>
+
+                                            <th>Nombre</th>
+
+                                            <th>Apellido</th>
+
+                                            <th></th>
+
+                                            <th></th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr th:each="item: ${listaUsuarios}">
+
+                                            <td th:text="${item.perfil.dni}"></td>
+
+                                            <td th:text="${item.nombre}"></td>
+
+                                            <td th:text="${item.apellido}"></td>
+
+                                            <td class="text-center">
+
+                                                <a href="#" class="btn btn-warning editarProducto"
+
+                                                    th:data-id="${item.id}"
+
+                                                    th:data-categoria="${item.perfil.id}"
+
+                                                    th:data-nombre="${item.nombre}"
+
+                                                    th:data-precio="${item.apellido}">
+
+                                                    <i class="fa-solid fa-pen-to-square"></i> Editar
+
+                                                </a>
+
+                                            </td>
+
+                                            <td class="text-center">
+
+                                                <a th:href="@{/usuario/eliminar/} + ${item.id}" class="btn btn-danger"
+
+                                                    onclick="return confirm('¿Desea eliminar el Usuario?')">
+
+                                                    <i class="fa-solid fa-trash-can"></i> Eliminar
+
+                                                </a>
+
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </main>
+                <!-- <footer class="py-4 bg-light mt-auto" th:replace="layouts/plantilla :: footer">
+                
+                </footer> -->
+            </div>
+        </div>
+
+        <!-- Modal -->
+
+        <div class="modal fade" id="modalEditar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Producto</h1>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+
+
+                <form th:action="@{/usuario/form}" th:object="${usuario}" method="post">
+
+                    <div class="modal-body">
+
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <div class="row">
+
+                            <div class="col-12 mb-3">
+
+                                <label>Categoría:</label>
+
+                                <select class="form-select" name="perfil.id" id="cboCategoria">
+
+                                    <option value="">Seleccione una opción:</option>
+
+                                    <option th:each="item: ${listaPerfiles}" th:value="${item.id}" th:text="${item.dni}"></option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row">
+
+                            <div class="col-12 mb-3">
+
+                                <label>Nombre del producto:</label>
+
+                                <input type="text" name="nombre" id="txtNombre" class="form-control"/>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row">
+
+                            <div class="col-12 mb-3">
+
+                                <label>Precio del producto:</label>
+
+                                <input type="text" name="apellido" id="txtPrecio" class="form-control"/>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                        <button type="submit" class="btn btn-info">
+
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div th:replace="layouts/plantilla :: librerias"></div>
+        <script type="text/javascript" th:src="@{/js/usuario.js}"></script>
+    </body>
+</html>

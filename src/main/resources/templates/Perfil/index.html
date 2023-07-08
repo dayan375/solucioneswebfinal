@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head th:replace="layouts/plantilla :: cabecera"  ></head>
+    <body class="sb-nav-fixed">
+        <nav th:replace="layouts/plantilla :: barra" >
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav" th:replace="layouts/plantilla :: menu" >  
+            </div >
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container">
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <span th:text="${titulo}" ></span>
+                            </div>
+                            <form th:action="@{/perfil/registrar}" th:object="${perfil}" method="post">
+                                <div class="card-body">
+                                    <input type="hidden" th:field="*{id}"/>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label> DNI del Perfil: </label>
+                                            <input th:field="*{dni}" type="text" class="form-control" placeholder="Ingrese el DNI del Perfil" />
+                                        </div>
+                                        <!-- <div class="col-md-6 mb-3">
+                                            <label> Peso de la Mascota: </label>
+                                            <input th:field="*{peso}" type="text" class="form-control" placeholder="Ingrese el peso de la mascota "/>
+                                        </div> -->
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12 text-center">
+                                            
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fa-solid fa-floppy-disk"></i>
+                                                Registrar Perfil
+                                            </button>
+
+                                            <button type="button" class="btn btn-secondary" onclick="limpiarForm();">
+                                                <i class="fa-regular fa-file" ></i>
+                                                Nuevo Perfil
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <br><br>
+                        <div class="card text-center ">
+                            <div class="card-header">
+                                Perfiles Registrados
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th> DNI </th>
+                                                <!-- <th> Peso </th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-center" th:each="item: ${listaPerfiles}">
+                                                <td th:text="${item.dni}" ></td>
+                                                <!-- <td th:text="${item.peso}" ></td> -->
+                                                <td class="text-center"> 
+                                                    <a th:href="@{/perfil/mostrarEditar/} + ${item.id}" class="btn btn-warning" > 
+                                                        <i class="fa-solid fa-pen-to-square"></i> Editar </a> 
+                                                </td>
+                                                <td class="text-center"> 
+                                                    <a th:href="@{/perfil/eliminar/} + ${item.id}" class="btn btn-warning" onclick="return confirm('Desea eliminar el Perfil?')"> 
+                                                        <i class="fa-solid fa-trash-can" ></i> Eliminar Perfil </a> 
+                                                </td>                                        
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+                <!-- <footer class="py-4 bg-light mt-auto" th:replace="layouts/plantilla :: footer">                
+                </footer> -->
+            </div>
+        </div>
+        <div th:replace="layouts/plantilla :: librerias">
+        </div>
+        <script th:src="@{/js/libreriaCategoria.js}"></script>
+    </body>
+</html>
