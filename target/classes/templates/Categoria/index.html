@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head th:replace="layouts/plantilla :: cabecera"  >
+        
+    </head>
+    <body class="sb-nav-fixed">
+        <nav th:replace="layouts/plantilla :: barra" >
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav" th:replace="layouts/plantilla :: menu" >  
+            </div >
+            <div id="layoutSidenav_content">
+                <main>
+                    
+                    <div class="container">
+
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <span th:text="${titulo}" ></span>
+                            </div>
+
+                            <form th:action="@{/categoria/guardar}" th:object="${categoria}" method="post">
+                                <div class="card-body">
+                                    <input type="hidden" th:field="*{id}"/>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label> Nombre de la Categoria: </label>
+                                            <input th:field="*{nombre}" type="text" class="form-control" placeholder="nombre de la categoria" />
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label> Nombre de la Descripcion: </label>
+                                            <input th:field="*{descripcion}" type="text" class="form-control" placeholder="descripcion de la categoria" />
+                                        </div>
+                                    </div>
+                                
+                                    <div class="row mt-3">
+                                        <div class="col-12 text-center">
+                                            <button type="button" class="btn btn-secondary" onclick="limpiarForm();">
+                                                <i class="fa-regular fa-file" ></i>
+                                                Nueva Categoria
+                                            </button>
+                                            
+                                            
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fa-solid fa-floppy-disk"></i>
+                                                Guardar Categoria
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <br><br>
+
+                        <div class="card text-center">
+                            <div class="card-header">
+                                Categorias Registradas
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th> Nombres </th>
+                                                <th> Descripcion </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="item: ${listaCategorias}">
+                                                <td th:text="${item.nombre}" ></td>
+                                                <td th:text="${item.descripcion}" ></td>
+                                                <td class="text-center"> 
+                                                    <a th:href="@{/categoria/mostrarEditar/} + ${item.id}" class="btn btn-warning" > 
+                                                        <i class="fa-solid fa-pen-to-square"></i> Editar </a> 
+                                                </td>
+                                                <td class="text-center"> 
+                                                    <a th:href="@{/categoria/eliminar/} + ${item.id}" class="btn btn-warning" onclick="return confirm('Desea eliminar la categoria?')"> 
+                                                        <i class="fa-solid fa-trash-can" ></i> Eliminar </a> 
+                                                </td>                                        
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+                <!-- <footer class="py-4 bg-light mt-auto" th:replace="layouts/plantilla :: footer">
+                
+                </footer> -->
+            </div>
+        </div>
+        <div th:replace="layouts/plantilla :: librerias">
+        </div>
+        <script th:src="@{/js/libreriaCategoria.js}"></script>
+    </body>
+</html>
